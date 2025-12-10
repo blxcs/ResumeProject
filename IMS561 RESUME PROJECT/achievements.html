@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Professional Development — Haspa Dalila</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --primary:#1976d2;
+      --primary-dark:#0d47a1;
+      --bg:#f8f9fa;
+      --card:#ffffff;
+      --muted:#4a4a4a;
+      --radius:12px;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:"Poppins",sans-serif;
+      background:#2196f3;
+      color:#222;
+    }
+
+    .courses-section{
+      max-width:1000px;
+      margin:28px auto;
+      padding:0 20px;
+    }
+    .courses-section h2{
+      text-align:center;
+      color:#fff;
+      font-size:1.5rem;
+      margin-bottom:24px;
+    }
+    .courses-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+      gap:20px;
+    }
+    .course-card{
+      background:var(--card);
+      border-radius:var(--radius);
+      overflow:hidden;
+      box-shadow:0 6px 18px rgba(25,118,210,0.08);
+      padding:16px;
+      transition:transform 0.3s ease;
+      cursor:default;
+    }
+    .course-card:hover{ transform:translateY(-5px); }
+    .course-card h3{margin:0 0 8px;color:var(--primary);font-size:1.1rem;}
+    .course-card p{margin:0;font-size:0.95rem;color:var(--muted);}
+  </style>
+
+</head>
+
+<body>
+
+  <main>
+    <section class="courses-section" aria-labelledby="courses-heading">
+      <h2 id="courses-heading">Professional Development</h2>
+
+      <div class="courses-grid">
+        <div class="course-card">
+          <h3>Information Literacy Talk</h3>
+          <p>Attended a session on efficient information management techniques.</p>
+        </div>
+        <div class="course-card">
+          <h3>Mendeley Workshop</h3>
+          <p>Learned reference management and academic citation skills.</p>
+        </div>
+        <div class="course-card">
+          <h3>Power BI Training</h3>
+          <p>Hands-on course on data visualization and dashboards.</p>
+        </div>
+        <div class="course-card">
+          <h3>SPSS Workshop</h3>
+          <p>Practical training on statistical analysis using SPSS software.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+</body>
+</html>

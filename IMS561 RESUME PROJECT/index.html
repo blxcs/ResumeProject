@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Haspa Dalila | Resume Website</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --primary:#1976d2;
+      --primary-dark:#0d47a1;
+      --bg:#1976d2;
+      --card:#ffffff;
+      --muted:#e3e3e3;
+      --radius:10px;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:"Poppins",sans-serif;
+      background:var(--bg);
+      color:#fff;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      min-height:100vh;
+      display:flex;
+      flex-direction:column;
+    }
+
+    header{
+      position:sticky;
+      top:0;
+      z-index:1000;
+      background:#ffffff;
+      box-shadow:0 2px 8px rgba(0,0,0,0.06);
+    }
+    .container{
+      max-width:1100px;
+      margin:0 auto;
+      padding:0 20px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:20px;
+      height:64px;
+    }
+    .brand h2{
+      margin:0;
+      font-size:1.05rem;
+      color:var(--primary);
+    }
+
+    nav ul{
+      list-style:none;
+      margin:0;
+      padding:0;
+      display:flex;
+      gap:10px;
+      align-items:center;
+    }
+    nav a{
+      display:inline-block;
+      padding:8px 12px;
+      border-radius:8px;
+      text-decoration:none;
+      color:#333;
+      font-size:0.95rem;
+      transition:all .18s ease;
+    }
+    nav a:hover{
+      background:rgba(25,118,210,0.06);
+      color:var(--primary-dark);
+    }
+    nav a.active{
+      background:var(--primary);
+      color:#fff !important;
+      box-shadow:0 4px 14px rgba(25,118,210,0.12);
+    }
+
+    .menu-toggle{
+      display:none;
+      background:none;
+      border:0;
+      font-size:1.25rem;
+      cursor:pointer;
+      color:var(--primary);
+    }
+
+    
+    .hero{
+      text-align:center;
+      padding:36px 20px;
+      margin-top:20px;
+    }
+    .profile-pic{
+      width:180px;
+      height:180px;
+      object-fit:cover;
+      border-radius:50%;
+      border:4px solid #fff;
+      box-shadow:0 6px 18px rgba(0,0,0,0.25);
+      display:block;
+      margin:0 auto 12px;
+    }
+    .hero h1{
+      margin:8px 0 6px;
+      font-size:1.4rem;
+      color:#fff;
+    }
+    .hero p{ margin:4px 0; color:#e3e3e3; }
+    .tagline{ color:#fff; font-weight:600; margin-top:10px; }
+
+    
+    .content-wrap{
+      max-width:1100px;
+      margin:20px auto;
+      padding:0 20px 40px;
+      width:100%;
+      flex:1 0 auto;
+    }
+    iframe#contentFrame{
+      width:100%;
+      min-height:520px;
+      border:0;
+      background:#fff;
+      border-radius:12px;
+      box-shadow:0 8px 30px rgba(0,0,0,0.08);
+      display:none; /* hidden by default */
+    }
+
+    footer{
+      margin-top:30px;
+      text-align:center;
+      padding:14px 20px;
+      color:#fff;
+      background:var(--primary-dark);
+      flex-shrink:0;
+    }
+
+   
+    @media (max-width:900px){
+      .container{height:56px;}
+      nav{
+        position:fixed;
+        right:14px;
+        top:64px;
+        background:var(--card);
+        border-radius:12px;
+        box-shadow:0 8px 30px rgba(0,0,0,0.08);
+        overflow:hidden;
+        transform-origin:top right;
+        display:none;
+      }
+      nav.open{ display:block; }
+      nav ul{ flex-direction:column; padding:10px; gap:6px; min-width:180px; }
+      .menu-toggle{ display:inline-block; }
+      .hide-mobile{ display:none; }
+    }
+
+    
+    .dropdown {
+      position: relative;
+      display: inline-block;
+    }
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: #fff;
+      min-width: 160px;
+      box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+      z-index: 1000;
+      border-radius:8px;
+    }
+    .dropdown-content a {
+      color: #333;
+      padding: 8px 12px;
+      text-decoration: none;
+      display: block;
+    }
+    .dropdown-content a:hover {
+      background-color: #f1f1f1;
+    }
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+    .dropbtn {
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="container">
+      <div class="brand">
+        <h2>My Resume</h2>
+      </div>
+
+      <button class="menu-toggle" aria-label="Toggle menu" id="menuToggle">☰</button>
+
+      <nav id="mainNav">
+        <ul>
+          <li><a href="blank.html" target="contentFrame" id="homeLink">Home</a></li>
+          <li><a href="aboutme.html" target="contentFrame" class="nav-load">About Me</a></li>
+          <li><a href="education.html" target="contentFrame" class="nav-load">Education</a></li>
+          <li><a href="experience.html" target="contentFrame" class="nav-load">Experience</a></li>
+          <li><a href="skills.html" target="contentFrame" class="nav-load">Skills</a></li>
+          <li><a href="achievements.html" target="contentFrame" class="nav-load">Professional Development</a></li>
+          <li><a href="portfolio.html" target="contentFrame" class="nav-load">Portfolio</a></li>
+          <li>
+           
+            <div class="dropdown">
+              <a href="#" class="dropbtn">Connect</a>
+              <div class="dropdown-content">
+                <a href="contact.html" target="contentFrame">Contact</a>
+                <a href="references.html" target="contentFrame">References</a>
+                <a href="resume.pdf" download>Download Resume</a>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  
+  <section class="hero" id="heroSection">
+    <img src="profile.jpg" alt="Profile Picture" class="profile-pic">
+    <h1>Norhaspadalila Binti Bah Dindoi</h1>
+    <p>Student | UiTM Cawangan Kedah</p>
+    <p class="tagline">Passionate about organising knowledge</p>
+
+   
+    <audio id="backgroundAudio" autoplay muted loop>
+      <source src="laguhome.mp3" type="audio/mpeg">
+      Your browser does not support the audio element.
+    </audio>
+    <button id="unmuteBtn">Unmute Audio</button>
+  </section>
+
+  <div class="content-wrap">
+    <iframe id="contentFrame" name="contentFrame" src="blank.html" title="Content frame"></iframe>
+  </div>
+
+  <footer>
+    <p>© 2025 Haspa Dalila. All rights reserved.</p>
+  </footer>
+
+  <script>
+    
+    const toggle = document.getElementById('menuToggle');
+    const nav = document.getElementById('mainNav');
+    if(toggle){
+      toggle.addEventListener('click', ()=> nav.classList.toggle('open'));
+    }
+
+    
+    const iframe = document.getElementById('contentFrame');
+    const hero = document.getElementById('heroSection');
+
+    document.querySelectorAll('.nav-load').forEach(a => {
+      a.addEventListener('click', function(e){
+        iframe.style.display = 'block';
+        hero.style.display = 'none';
+        document.querySelectorAll('nav a').forEach(x => x.classList.remove('active'));
+        this.classList.add('active');
+      });
+    });
+
+    document.getElementById('homeLink').addEventListener('click', function(e){
+      iframe.style.display = 'none';
+      hero.style.display = 'block';
+      document.querySelectorAll('nav a').forEach(x => x.classList.remove('active'));
+      this.classList.add('active');
+    });
+
+    iframe.addEventListener('load', function(){
+      try {
+        const url = iframe.contentWindow.location.pathname.split('/').pop();
+        if(url === 'blank.html' || url === '') {
+          iframe.style.display = 'none';
+          hero.style.display = 'block';
+        } else {
+          iframe.style.display = 'block';
+          hero.style.display = 'none';
+        }
+      } catch(e){}
+    });
+
+    
+    const audio = document.getElementById('backgroundAudio');
+    const unmuteBtn = document.getElementById('unmuteBtn');
+
+    unmuteBtn.addEventListener('click', () => {
+      audio.muted = false;
+      audio.play();
+      unmuteBtn.style.display = 'none';
+    });
+  </script>
+
+</body>
+</html>

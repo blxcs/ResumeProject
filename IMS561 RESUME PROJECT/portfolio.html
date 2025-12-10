@@ -1,0 +1,192 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Portfolio — Haspa Dalila</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --primary:#1976d2;
+      --primary-dark:#0d47a1;
+      --bg:#f8f9fa;
+      --card:#ffffff;
+      --muted:#4a4a4a;
+      --radius:12px;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:"Poppins",sans-serif;
+      background:#2196f3;
+      color:#222;
+    }
+
+    .portfolio-section{
+      max-width:1000px;
+      margin:28px auto;
+      padding:0 20px;
+    }
+    .portfolio-section h2{
+      text-align:center;
+      color:#fff;
+      font-size:1.5rem;
+      margin-bottom:24px;
+    }
+    .portfolio-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+      gap:20px;
+    }
+    .portfolio-card{
+      position:relative;
+      background:var(--card);
+      border-radius:var(--radius);
+      overflow:hidden;
+      box-shadow:0 6px 18px rgba(25,118,210,0.08);
+      transition:transform 0.3s ease;
+      cursor:pointer;
+    }
+    .portfolio-card:hover{ transform:translateY(-5px); }
+    .portfolio-card img{
+      width:100%;
+      height:200px;
+      object-fit:cover;
+      display:block;
+      transition:transform 0.3s ease;
+    }
+    .portfolio-card:hover img{ transform:scale(1.05); }
+    .portfolio-info{
+      position:absolute;
+      bottom:0;
+      left:0;
+      width:100%;
+      padding:16px;
+      background:linear-gradient(180deg, rgba(25,118,210,0.9), rgba(13,71,161,0.9));
+      color:#fff;
+      transform:translateY(100%);
+      transition:transform 0.3s ease;
+    }
+    .portfolio-card:hover .portfolio-info{ transform:translateY(0); }
+    .portfolio-info h3{margin:0 0 4px;font-size:1.15rem;}
+    .portfolio-info p{margin:0;font-size:0.9rem;}
+
+    .video-container{
+      margin-top:30px;
+      display:none;
+      background:var(--card);
+      padding:20px;
+      border-radius:12px;
+      box-shadow:0 6px 18px rgba(0,0,0,0.08);
+    }
+    .video-header{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      margin-bottom:12px;
+    }
+    .video-header h3{ margin:0; color:var(--primary); font-size:1.125rem; }
+    .video-close{
+      background:none;
+      border:0;
+      font-size:1rem;
+      cursor:pointer;
+      color:var(--muted);
+      padding:8px 10px;
+      border-radius:8px;
+    }
+    .video-close:hover{ background:rgba(0,0,0,0.04); color:#000; }
+  </style>
+
+</head>
+
+<body>
+  <main>
+    <section class="portfolio-section" aria-labelledby="portfolio-heading">
+      <h2 id="portfolio-heading">Portfolio</h2>
+      <div class="portfolio-grid">
+        <div class="portfolio-card" onclick="showVideo('sulam.mp4','SULAM program — Reading program at SK Jalan Pegawai')">
+          <img src="sulam.jpg" alt="SULAM Program">
+          <div class="portfolio-info">
+            <h3>SULAM program</h3>
+            <p>Reading program at SK Jalan Pegawai to promote reading interest.</p>
+          </div>
+        </div>
+        <div class="portfolio-card" onclick="showVideo('baktisiswa.mp4','Baktisiswa 4.0 with PMOA — Community service in Bukit Bangkong, Sepang')">
+          <img src="baktisiswa.jpg" alt="Baktisiswa 4.0">
+          <div class="portfolio-info">
+            <h3>Baktisiswa 4.0 with PMOA</h3>
+            <p>Community service project in Bukit Bangkong, Sepang.</p>
+          </div>
+        </div>
+        <div class="portfolio-card" onclick="showVideo('courseware.mp4','Numberland Explore — Educational courseware for children 4–6')">
+          <img src="courseware.jpg" alt="Numberland Explore">
+          <div class="portfolio-info">
+            <h3>Numberland Explore</h3>
+            <p>Educational courseware for children aged 4–6 years.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="video-container" id="videoBox" aria-hidden="true">
+        <div class="video-header">
+          <h3 id="videoTitle"></h3>
+          <div>
+            <button class="video-close" id="closeVideo" aria-label="Close video">Close ✕</button>
+          </div>
+        </div>
+
+        <video id="portfolioVideo" controls style="width:100%;border-radius:12px;max-height:60vh;">
+          <source id="videoSource" src="" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+
+    </section>
+  </main>
+
+  <script>
+    const videoBox = document.getElementById('videoBox');
+    const video = document.getElementById('portfolioVideo');
+    const source = document.getElementById('videoSource');
+    const videoTitle = document.getElementById('videoTitle');
+    const closeBtn = document.getElementById('closeVideo');
+
+    function showVideo(file, title){
+      source.src = file;
+      videoTitle.textContent = title || '';
+      video.load();
+      video.play().catch(()=>{});
+
+      videoBox.style.display = 'block';
+      videoBox.setAttribute('aria-hidden','false');
+
+      setTimeout(()=> videoBox.scrollIntoView({behavior:'smooth', block: 'center'}), 100);
+    }
+
+    closeBtn.addEventListener('click', ()=>{
+      video.pause();
+      source.src = '';
+      video.load();
+      videoTitle.textContent = '';
+      videoBox.style.display = 'none';
+      videoBox.setAttribute('aria-hidden','true');
+    });
+
+    document.addEventListener('click', (e)=>{
+      if(videoBox.style.display === 'block' && !videoBox.contains(e.target) && !e.target.closest('.portfolio-card')){
+        video.pause();
+        source.src = '';
+        video.load();
+        videoTitle.textContent = '';
+        videoBox.style.display = 'none';
+        videoBox.setAttribute('aria-hidden','true');
+      }
+    });
+  </script>
+</body>
+</html>
